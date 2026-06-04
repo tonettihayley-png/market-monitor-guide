@@ -179,7 +179,9 @@ main {
   margin-top: 25px;
 }
 
-.problem-section {
+.task-section,
+.problem-section,
+.say-section {
   margin-bottom: 26px;
   padding: 24px;
   border: 1px solid var(--border);
@@ -187,6 +189,169 @@ main {
   background:
     linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(247, 251, 252, 0.9));
   box-shadow: var(--shadow);
+}
+
+.task-section {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(241, 248, 250, 0.94));
+}
+
+.task-layout,
+.task-shortcuts,
+.say-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.task-layout {
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+  align-items: stretch;
+}
+
+.task-shortcuts {
+  gap: 12px;
+}
+
+.task-card {
+  display: flex;
+  min-height: 214px;
+  flex-direction: column;
+  padding: 18px;
+  border: 1px solid #dbe8ef;
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.task-card-primary {
+  min-height: 238px;
+  padding: 22px;
+  border-color: #c7e1ec;
+  background:
+    linear-gradient(135deg, #ffffff, #f3fbfb);
+}
+
+.task-card:hover {
+  border-color: #b9d9df;
+  box-shadow: var(--shadow);
+  transform: translateY(-2px);
+}
+
+.task-label {
+  align-self: flex-start;
+  padding: 4px 9px;
+  border-radius: 999px;
+  color: #168174;
+  background: #ebf9f6;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.task-card strong {
+  margin-top: 13px;
+  color: var(--text);
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+.task-card p {
+  margin: 9px 0 16px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.task-action {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  padding: 9px 12px;
+  border-radius: 11px;
+  color: #fff;
+  background: var(--primary);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.task-shortcut {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px 12px;
+  align-items: center;
+  min-height: 70px;
+  padding: 14px 15px;
+  border: 1px solid #dbe8ef;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: var(--shadow-soft);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.task-shortcut:hover {
+  border-color: #b9d9df;
+  box-shadow: 0 10px 24px rgba(25, 65, 96, 0.08);
+}
+
+.task-shortcut span {
+  color: var(--text);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.task-shortcut p {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.65;
+}
+
+.task-shortcut strong {
+  min-width: 66px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  color: var(--primary);
+  background: var(--primary-light);
+  font-size: 13px;
+  text-align: center;
+}
+
+.say-section {
+  background:
+    linear-gradient(135deg, #ffffff, #fffaf5);
+}
+
+.say-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.say-card {
+  padding: 18px;
+  border: 1px solid #ecd8c7;
+  border-radius: 16px;
+  background: #fffaf5;
+  box-shadow: var(--shadow-soft);
+}
+
+.say-card h3 {
+  margin: 0 0 12px;
+  color: #8a4315;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.say-card p {
+  margin: 0;
+  color: #6c594c;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.say-card strong {
+  color: var(--text);
 }
 
 .problem-header {
@@ -321,6 +486,43 @@ main {
 .problem-link:hover {
   color: #0b4d7c;
   background: #cfe4f2;
+}
+
+.problem-details {
+  margin-top: 14px;
+}
+
+.problem-details summary {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  border-radius: 11px;
+  color: #fff;
+  background: var(--primary);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.problem-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.summary-close,
+.problem-details[open] .summary-open {
+  display: none;
+}
+
+.problem-details[open] .summary-close {
+  display: inline;
+}
+
+.problem-details .problem-link {
+  margin-top: 14px;
 }
 
 .section-heading,
@@ -561,7 +763,7 @@ main {
 .timeline {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 12px;
   margin: 0;
   padding: 0;
@@ -692,6 +894,8 @@ main {
   .card-grid,
   .info-grid,
   .portal-summary,
+  .task-layout,
+  .say-grid,
   .problem-grid {
     grid-template-columns: 1fr;
   }
@@ -774,7 +978,9 @@ main {
     margin-top: 18px;
   }
 
-  .problem-section {
+  .task-section,
+  .problem-section,
+  .say-section {
     margin-bottom: 22px;
     padding: 17px;
     border-radius: 16px;
@@ -805,6 +1011,64 @@ main {
 
   .problem-grid {
     gap: 12px;
+  }
+
+  .task-layout,
+  .task-shortcuts,
+  .say-grid {
+    gap: 12px;
+  }
+
+  .task-card {
+    min-height: auto;
+    padding: 17px;
+    border-radius: 15px;
+  }
+
+  .task-card strong {
+    font-size: 18px;
+  }
+
+  .task-card p {
+    font-size: 15px;
+    line-height: 1.78;
+  }
+
+  .task-action,
+  .problem-details summary {
+    width: 100%;
+    min-height: 48px;
+    font-size: 15px;
+  }
+
+  .task-shortcut {
+    min-height: auto;
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .task-shortcut span {
+    font-size: 16px;
+  }
+
+  .task-shortcut p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .say-card {
+    padding: 17px;
+    border-radius: 15px;
+  }
+
+  .say-card h3 {
+    font-size: 17px;
+  }
+
+  .say-card p {
+    font-size: 15px;
+    line-height: 1.78;
   }
 
   .problem-card {
